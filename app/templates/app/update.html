@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>首頁</title>
+</head>
+<body>
+
+{% extends 'app/base.html' %}
+
+{% block content %}
+<div class="text-center">
+    <form method="post" action="{% url 'goupdate' index %}">
+        {% csrf_token %}
+        <label>{{cartlist1.0}}</label>
+        <input type="text" name="unit" value="{{cartlist1.2}}">份
+        <button type="submit">更新數量</button><br/>
+        {% if message %}
+            <h3><span class="badge bg-warning text-dark text-center">{{message}}!!</span></h3>
+        {% endif %}
+        <img src="{{meal.image.url}}" class="img-thumbnail" alt="..." height="500" width=600">
+    </form>
+</div>
+
+{% endblock %}
+</body>
+</html>

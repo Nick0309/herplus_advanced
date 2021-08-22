@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>餐點內容</title>
+</head>
+<body>
+
+{% extends 'app/base.html' %}
+
+{% block content %}
+
+<div class="text-center">
+    <form method="POST" action="{% url 'addcart' meal.id %}">
+        {% csrf_token %}
+        <label><h3>{{meal.name}}</h3></label>
+        <br>
+        {% if meal.image %}
+            <img src="{{meal.image.url}}" class="img-thumbnail" alt="..." height="400" width=500">
+        {% endif %}
+        <br>
+        <select name="unit">
+            <option value="1" selected="selected">1</option><!--selected為預設選項 -->
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select> <label>份</label>
+        <button type="submit">加入購物車</button>
+    </form>
+</div>
+
+{% endblock %}
+</body>
+</html>

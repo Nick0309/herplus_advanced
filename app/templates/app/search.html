@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>查詢訂單</title>
+</head>
+<body>
+
+{% extends 'app/base.html' %}
+
+{% block content %}
+    <form action="." method="POST" class="text-center">
+        {% csrf_token %}
+        <label><h4>訂單編號: </h4></label>
+        <input name="order_no">
+        <button type="submit">查詢</button>
+    </form>
+<br>
+
+    {% if order %}
+    <table border="2" cellspacing="2" cellpadding="20" align="center" class="table table-bordered table-hover">
+        <tr><th>單號</th><td>{{order.orderno}}</td></tr>
+        <tr><th>姓名</th><td>{{order.cname}}</td></tr>
+        <tr><th>訂餐內容</th>
+            <td>
+            {% for meal in ordermeal %}
+                {{meal.pname}} {{meal.unit}}份<br/>
+            {% endfor %}
+            </td>
+        </tr>
+        <tr><th>總金額</th><td>{{order.total_price}} 元</td></tr>
+    </table>
+
+    {% else %}
+
+    <br>
+        <div class="text-center">
+            <h3><span class="badge bg-warning text-dark text-center">{{message}}</span></h3>
+        </div>
+
+    {% endif %}
+
+
+{% endblock %}
+</body>
+</html>

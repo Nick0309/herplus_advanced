@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>訂單成功</title>
+</head>
+<body>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>首頁</title>
+</head>
+<body>
+
+{% extends 'app/base.html' %}
+
+{% block content %}
+
+    <div class="text-center">
+        <h1><span class="badge bg-success">訂餐成功</span></h1>
+    </div>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">姓名</th>
+        <th scope="col">手機</th>
+      <th scope="col">電子信箱</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>{{name}}</td>
+        <td>{{phone}}</td>
+      <td>{{email}}</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="text-center">
+    <br>
+    <h3>訂單號碼</h3>
+    <a href="{% url 'check_order' order_no %}">{{order_no}}</a>
+</div>
+{% endblock %}
+</body>
+</html>

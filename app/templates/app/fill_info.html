@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>結帳</title>
+</head>
+<body>
+
+{% extends 'app/base.html' %}
+
+{% block content %}
+
+    <div class="text-center">
+        <h2><span class="badge rounded-pill bg-primary">點餐內容</span></h2>
+    </div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">品名</th>
+        <th scope="col">金額</th>
+      <th scope="col">數量</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for thing in cartlist1 %}
+    <tr>
+      <td>{{thing.0}}</td>
+        <td>{{thing.1}}</td>
+      <td>{{thing.2}}份</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+
+<h5><span class="badge bg-success">訂單金額: {{total}} 元</span></h5>
+
+<br>
+<div class="text-center">
+    <h2><span class="badge rounded-pill bg-primary">請填寫個人資訊</span></h2>
+</div>
+    <form action="{% url 'confirm' %}" method="POST">
+        {% csrf_token %}
+        <table border="1" cellspacing="2" cellpadding="6" align="center">
+            <tr><th>姓名</th><td>{{form.name}}</td></tr>
+            <tr><th>電話</th><td>{{form.phone}}</td></tr>
+            <tr><th>電子郵件</th><td>{{form.email}}</td></tr>
+            <tr><th><button type="submit">確認點餐</button></th></tr>
+        </table>
+    </form>
+{% endblock %}
+</body>
+</html>

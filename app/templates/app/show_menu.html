@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>菜單</title>
+</head>
+<body>
+
+{% extends 'app/base.html' %}
+
+{% block content %}
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">種類</th>
+      <th scope="col">品名</th>
+      <th scope="col">價格</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for meal in meals %}
+    <tr>
+      <td>{{meal.category}}</td>
+      <td><a href="{% url 'detail' meal.id %}">{{meal.name}}</a></td>
+      <td>{{meal.price}}元</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+
+{% endblock %}
+
+</body>
+</html>

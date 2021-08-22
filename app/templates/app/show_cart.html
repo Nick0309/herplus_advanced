@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>購物車</title>
+</head>
+<body>
+
+{% extends 'app/base.html' %}
+
+{% block content %}
+
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">品名</th>
+        <th scope="col">金額</th>
+      <th scope="col">數量</th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for thing in cartlist1 %}
+    <tr>
+      <td>{{thing.0}}</td>
+        <td>{{thing.1}} 元</td>
+        <td>{{thing.2}} 份</td>
+        <td>
+            <form method="post" action="{% url 'update' forloop.counter %}">
+                {% csrf_token %}
+                <button class="btn btn-warning btn-sm">修改數量</button>
+            </form>
+        </td>
+        <td>
+            <form method="post" action="{% url 'delete' forloop.counter %}">
+                {% csrf_token %}
+                <button class="btn btn-danger btn-sm">刪除</button>
+            </form>
+        </td>
+
+    </tr>
+
+  {% endfor %}
+  </tbody>
+</table>
+
+<h5><span class="badge bg-success">總金額: {{total}} 元</span></h5>
+
+<div class="text-center">
+    <form method="post" action="{% url 'show_menu' %}">
+        {% csrf_token %}
+        <button>繼續點菜</button>
+    </form>
+</div>
+<br>
+<div class="text-center">
+    <form method="post" action="{% url 'fill_info' %}">
+        {% csrf_token %}
+        <button>結帳去</button>
+    </form>
+</div>
+
+<br>
+
+<div class="text-center">
+    <h1><span class="badge bg-warning text-dark text-center">{{message}}</span></h1>
+</div>
+
+{% endblock %}
+
+</body>
+</html>

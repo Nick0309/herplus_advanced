@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>訂單內容</title>
+</head>
+<body>
+
+{% extends 'app/base.html' %}
+
+{% block content %}
+<div class="text-center">
+    <h3><span class="badge bg-success">訂單內容</span></h3><br/>
+</div>
+    <table border="2" cellspacing="2" cellpadding="20" align="center" class="table table-bordered">
+        <tr><th>單號</th><td>{{order.orderno}}</td></tr>
+        <tr><th>姓名</th><td>{{order.cname}}</td></tr>
+        <tr><th>訂餐內容</th>
+            <td>
+            {% for meal in ordermeal %}
+                {{meal.pname}} {{meal.unit}}份<br/>
+            {% endfor %}
+            </td>
+        </tr>
+        <tr><th>總金額</th><td>{{order.total_price}} 元</td></tr>
+    </table>
+
+{% endblock %}
+
+</body>
+</html>
